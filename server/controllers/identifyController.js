@@ -27,7 +27,7 @@ const addToCollection = async (userId, label, vietnameseName, confidence, imageU
     userId,
     label,
     vietnameseName,
-    imageUrl,
+    ...(imageUrl ? { imageUrl } : {}),
     count: 1,
     bestConfidence: confidence,
     lastSeenAt: new Date(),
@@ -61,7 +61,7 @@ export const identifySpecies = async (req, res) => {
       animalDetails = {
         vietnameseName: dbAnimal.vietnameseName,
         description: dbAnimal.description,
-        imageUrl: dbAnimal.imageUrl,
+        imageUrl: dbAnimal.imageUrl || "",
       };
     }
 
